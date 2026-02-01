@@ -1,13 +1,13 @@
 {
   "name": "guessify",
   "description": "Multiplayer Skribble-like drawing game",
+  "type": "module",
   "engines": {
     "node": "18.x"
   },
-  "scripts": {
-    "dev": "cd server && npm run dev",
-    "build": "npm install && cd client && npm install && npm run build && cd ../server && npm install",
-    "start": "cd server && npm start",
-    "install-all": "npm install && cd client && npm install && cd ../server && npm install"
-  }
+"scripts": {
+  "build": "npm install && npm --prefix client install && npm --prefix client run build",
+  "start": "node server/index.js"
+}
+
 }
