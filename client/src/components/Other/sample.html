@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sample</title>
+</head>
+<body>
+    <canvas id="myCanvas">
+
+    </canvas>
+</body>
+<script>
+        function animateInterpolation(p1, p2, spacing = 1) {
+        const canvas = document.getElementById("myCanvas");
+        canvas.width = 800;
+        canvas.height = 400;
+
+        const ctx = canvas.getContext("2d");
+
+        const dx = p2.x - p1.x;
+        const dy = p2.y - p1.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const steps = Math.floor(distance / spacing);
+
+        let i = 0;
+        function drawStep() {
+        if (i > steps) return;
+
+        const x = p1.x + (dx * i) / steps;
+        const y = p1.y + (dy * i) / steps;
+
+        ctx.beginPath();
+        ctx.arc(x, y, 2, 0, Math.PI * 2); // small green dot
+        ctx.fillStyle = "green";
+        ctx.fill();
+
+        i++;
+        requestAnimationFrame(drawStep);
+    }
+
+        drawStep();
+    }
+
+        // 👉 Call with two example points
+        const startPoint = { x: 100, y: 100 };
+        const endPoint = { x: 800, y: 300 };
+        animateInterpolation(startPoint, endPoint);
+
+
+</script>
+</html>
+

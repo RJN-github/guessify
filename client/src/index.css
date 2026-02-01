@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Poppins:wght@400;600&display=swap');
+@import "tailwindcss";
+:root {
+  --primary-color: #8e44ad;
+  --secondary-color: #f1c40f;
+  --accent-color: #ffffff;
+  --bg-color: #1e1e2f;
+  --text-color: #f5f5f5;
+  --card-bg: #2e2e4d;
+  --btn-hover: #a569bd;
+  --animation-start-color: #8e44ad;
+  --animation-end-color: #fd0d0d;
+
+  --font-main: 'Press Start 2P', cursive;
+  --font-body: 'Poppins', sans-serif;
+
+  --title-animation : @keyframes var(--title-animation) {
+    0%{
+      color : var(--animation-start-color)
+    }
+    100%{
+      color : var(--animation-end-color)
+    }
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}

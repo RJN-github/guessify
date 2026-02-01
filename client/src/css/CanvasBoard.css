@@ -1,0 +1,27 @@
+.FontColors{
+    background-color: black;
+    border: 1px solid white;
+    height: 20px;
+    width: 20px;
+    margin: 0px 5px 0px 5px;
+    transition: .3s ease-in-out;
+}
+.Black{
+    background-color: black;
+}
+.White{
+    background-color: white;
+}
+.Red{
+    background-color: red;
+}
+.Blue{
+    background-color: blue;
+}
+.Green{
+    background-color: green;
+}
+
+.FontColors:hover {
+    border: 1px solid rgb(155, 93, 229);
+}
