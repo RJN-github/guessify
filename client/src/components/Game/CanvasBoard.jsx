@@ -21,19 +21,13 @@ function CanvasBoard({isDrawer}) {
 
     useEffect(() => {
         const canvas = canvasRef.current
-        const container = canvas.parentElement
         
-        // Set canvas size to match container
-        const rect = container.getBoundingClientRect()
-        const width = Math.floor(rect.width)
-        const height = Math.floor(rect.height)
+        // Fixed resolution for consistency across all devices
+        const CANVAS_WIDTH = 800
+        const CANVAS_HEIGHT = 600
         
-        canvas.width = width
-        canvas.height = height
-        
-        // Set CSS size to match
-        canvas.style.width = width + 'px'
-        canvas.style.height = height + 'px'
+        canvas.width = CANVAS_WIDTH
+        canvas.height = CANVAS_HEIGHT
         canvas.style.border = '2px solid #9b5de5'
 
         const ctx = canvas.getContext('2d')
@@ -132,9 +126,16 @@ function CanvasBoard({isDrawer}) {
             clientY = e.clientY
         }
 
-        // Calculate position relative to canvas
-        const x = clientX - rect.left
-        const y = clientY - rect.top
+        // Calculate position relative to canvas in display coordinates
+        const displayX = clientX - rect.left
+        const displayY = clientY - rect.top
+
+        // Scale to actual canvas resolution (account for CSS scaling)
+        const scaleX = canvas.width / rect.width
+        const scaleY = canvas.height / rect.height
+
+        const x = displayX * scaleX
+        const y = displayY * scaleY
 
         // Clamp to canvas bounds
         return {
@@ -329,7 +330,11 @@ function CanvasBoard({isDrawer}) {
                         userSelect: 'none',
                         touchAction: 'none',
                         flex: 1,
-                        width: '100%'
+                        width: '100%',
+                        height: 'auto',
+                        maxWidth: '100%',
+                        aspectRatio: '4 / 3',
+                        objectFit: 'contain'
                     }}
                 />
 
