@@ -36,7 +36,7 @@ const RoomGameState = new Map();
 function initializeGameState(roomId, players) {
   return {
     currentRound: 0,
-    totalRounds: 3,
+    totalRounds: players.length * 3,  // 3 rounds per player
     currentDrawerIndex: 0,
     currentWord: null,
     wordOptions: [],

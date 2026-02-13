@@ -14,6 +14,7 @@ function Game() {
     
     const [currentDrawer, setCurrentDrawer] = useState(null);
     const [currentRound, setCurrentRound] = useState(1);
+    const [totalRounds, setTotalRounds] = useState(3);
     const [timeRemaining, setTimeRemaining] = useState(60);
     const [wordOptions, setWordOptions] = useState([]);
     const [selectedWord, setSelectedWord] = useState(null);
@@ -32,6 +33,8 @@ function Game() {
             console.log('Game started with players:', playersInGame);
             console.log('Initial scores:', playersInGame.reduce((acc, p) => {acc[p.id] = 0; return acc}, {}));
             setPlayers(playersInGame);
+            // Set total rounds (3 rounds per player)
+            setTotalRounds(playersInGame.length * 3);
             // Initialize scores
             const initialScores = {};
             playersInGame.forEach(player => {
@@ -292,7 +295,7 @@ function Game() {
                 <div className="game-header">
                     <div className="game-header-info">
                         <div className="header-item">
-                            <strong>Round:</strong> {currentRound}/3
+                            <strong>Round:</strong> {currentRound}/{totalRounds}
                         </div>
                         <div className={`header-item ${timerStarted ? (timeRemaining <= 10 ? 'low-time' : 'normal-time') : ''}`} style={{color: timerStarted ? (timeRemaining <= 10 ? '#ff4444' : '#4eff44') : '#999'}}>
                             <strong>⏱️ Time:</strong> {timerStarted ? timeRemaining : '⏳ waiting for word'}
