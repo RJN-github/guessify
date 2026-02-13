@@ -21,8 +21,19 @@ function CanvasBoard({isDrawer}) {
 
     useEffect(() => {
         const canvas = canvasRef.current
-        canvas.width = 800
-        canvas.height = 500
+        const container = canvas.parentElement
+        
+        // Set canvas size to match container
+        const rect = container.getBoundingClientRect()
+        const width = Math.floor(rect.width)
+        const height = Math.floor(rect.height)
+        
+        canvas.width = width
+        canvas.height = height
+        
+        // Set CSS size to match
+        canvas.style.width = width + 'px'
+        canvas.style.height = height + 'px'
         canvas.style.border = '2px solid #9b5de5'
 
         const ctx = canvas.getContext('2d')
@@ -110,10 +121,22 @@ function CanvasBoard({isDrawer}) {
         const canvas = canvasRef.current
         const rect = canvas.getBoundingClientRect()
 
-        const borderWidth = 2
-        const x = e.clientX - rect.left - borderWidth
-        const y = e.clientY - rect.top - borderWidth
+        let clientX, clientY
+        
+        // Handle both mouse and touch events
+        if (e.touches) {
+            clientX = e.touches[0].clientX
+            clientY = e.touches[0].clientY
+        } else {
+            clientX = e.clientX
+            clientY = e.clientY
+        }
 
+        // Calculate position relative to canvas
+        const x = clientX - rect.left
+        const y = clientY - rect.top
+
+        // Clamp to canvas bounds
         return {
             x: Math.max(0, Math.min(x, canvas.width)),
             y: Math.max(0, Math.min(y, canvas.height))
@@ -219,6 +242,22 @@ function CanvasBoard({isDrawer}) {
         setCurrentStroke([])
     }, [isDrawing, interPolatePoints])
 
+    // Touch events
+    const handleTouchStart = useCallback((e) => {
+        e.preventDefault()
+        handleMouseDown(e)
+    }, [handleMouseDown])
+
+    const handleTouchMove = useCallback((e) => {
+        e.preventDefault()
+        handleMouseMove(e)
+    }, [handleMouseMove])
+
+    const handleTouchEnd = useCallback((e) => {
+        e.preventDefault()
+        handleMouseUp()
+    }, [handleMouseUp])
+
     const handleInterPolation = useCallback(({startpoint, lastpoint}) => {
         interPolatePoints(startpoint, lastpoint)
     }, [interPolatePoints])
@@ -268,7 +307,10 @@ function CanvasBoard({isDrawer}) {
                 display: 'flex',
                 flexDirection: 'column',
                 position: 'relative',
-                margin: '20px 0'
+                margin: '20px 0',
+                width: '100%',
+                height: '100%',
+                minHeight: '300px'
             }}>
                 <canvas
                     ref={canvasRef}
@@ -276,13 +318,18 @@ function CanvasBoard({isDrawer}) {
                     onMouseMove={handleMouseMove}
                     onMouseUp={handleMouseUp}
                     onMouseLeave={handleMouseUp}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
                     style={{
                         background: '#151532',
                         borderRadius: '12px',
                         cursor: 'crosshair',
                         display: 'block',
                         userSelect: 'none',
-                        touchAction: 'none'
+                        touchAction: 'none',
+                        flex: 1,
+                        width: '100%'
                     }}
                 />
 
