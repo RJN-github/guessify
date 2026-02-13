@@ -14,7 +14,7 @@ function Game() {
     
     const [currentDrawer, setCurrentDrawer] = useState(null);
     const [currentRound, setCurrentRound] = useState(1);
-    const [totalRounds, setTotalRounds] = useState(3);
+    const [totalRounds, setTotalRounds] = useState();
     const [timeRemaining, setTimeRemaining] = useState(60);
     const [wordOptions, setWordOptions] = useState([]);
     const [selectedWord, setSelectedWord] = useState(null);
@@ -295,7 +295,7 @@ function Game() {
                 <div className="game-header">
                     <div className="game-header-info">
                         <div className="header-item">
-                            <strong>Round:</strong> {currentRound}/{totalRounds}
+                            <strong>Round:</strong> {currentRound}/{players.length *3}
                         </div>
                         <div className={`header-item ${timerStarted ? (timeRemaining <= 10 ? 'low-time' : 'normal-time') : ''}`} style={{color: timerStarted ? (timeRemaining <= 10 ? '#ff4444' : '#4eff44') : '#999'}}>
                             <strong>⏱️ Time:</strong> {timerStarted ? timeRemaining : '⏳ waiting for word'}

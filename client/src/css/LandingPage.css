@@ -214,9 +214,9 @@ footer p:first-child {
   margin-top: 24px;
 }
 
-.socials button {
-  width: 48px;
-  height: 48px;
+.socials a {
+  width: 60px;
+  height: 60px;
   border: none;
   border-radius: 12px;
   background: rgba(139, 92, 246, 0.2);
@@ -231,32 +231,34 @@ footer p:first-child {
   justify-content: center;
 }
 
-.socials button:hover {
+.socials a:hover {
   background: rgba(139, 92, 246, 0.4);
   border-color: rgba(139, 92, 246, 0.6);
   transform: translateY(-2px) scale(1.05);
   color: white;
 }
 
-.socials button:nth-child(1):hover {
-  background: linear-gradient(135deg, #1da1f2, #0d8bd9);
+.socials a:nth-child(1):hover {
+  background: linear-gradient(135deg, #282929, #757575);
   border-color: #1da1f2;
 }
 
-.socials button:nth-child(2):hover {
-  background: linear-gradient(135deg, #0077b5, #005885);
+.socials a>img {
+  width: 40px;
+  height: 40px;
+  border-radius:4px;
+} 
+
+.socials a:nth-child(2):hover {
+  background: linear-gradient(135deg, #0077b5, #bfe1e6);
   border-color: #0077b5;
 }
 
-.socials button:nth-child(3):hover {
-  background: linear-gradient(135deg, #333, #24292e);
-  border-color: #333;
+.socials a:nth-child(3):hover {
+  background: linear-gradient(135deg, #333, #6b2c58f5);
+  border-color: #6b2c58f5;
 }
 
-.socials button:nth-child(4):hover {
-  background: linear-gradient(135deg, #6cc644, #5ba73b);
-  border-color: #6cc644;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {

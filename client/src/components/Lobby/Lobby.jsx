@@ -109,8 +109,6 @@
         >
           Start Gameplay
         </button>
-
-         <Chat roomUpdates={message}/>
         {/*  <CanvasBoard/>*/}
         <button className="exit-btn guessify-btn" onClick={handleExit} roomUpdates = {message}>
           Exit Lobby
