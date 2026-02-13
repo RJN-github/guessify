@@ -2,7 +2,6 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../css/LandingPage.css'
 import Ballpit from '../Other/Ballpit'
-import Hyperspeed from '../Other/HyperSpeed'
 
 function LandingPage() {
   const navigate = useNavigate()
