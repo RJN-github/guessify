@@ -92,7 +92,7 @@ app.get('/', (req, res) => {
 });
 
 // Handle client-side routing for SPA
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
     res.sendFile(join(__dirname, "../client/dist/index.html"))
 });
 
