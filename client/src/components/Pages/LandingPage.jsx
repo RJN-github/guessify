@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../../css/LandingPage.css'
-import Ballpit from '../Other/Ballpit'
 
 function LandingPage() {
   const navigate = useNavigate()
@@ -11,14 +10,7 @@ function LandingPage() {
   }
 
   return (
-    <div className='' style={{position: 'relative', minHeight: '150vh', height:'50px', maxHeight: '200vh', width: '100%'}}>
-     <Ballpit
-    count={100}
-    gravity={0.01}
-    friction={0.9975}
-    wallBounce={0.2}
-    followCursor={false}
-  />
+    <div className='landing-page-wrapper'>
 
       <div className="landing-container">
         <div className="landing-header">

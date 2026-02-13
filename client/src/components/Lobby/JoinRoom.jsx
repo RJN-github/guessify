@@ -33,6 +33,7 @@ function JoinRoom() {
             socket.emit("room:getState", {roomId})
             sessionStorage.setItem('joined', 'true')
             setLoading(false)
+            navigate(`/lobby/${roomId}`)
         })
 
         return () => {
@@ -55,15 +56,6 @@ function JoinRoom() {
             username: username.trim() ,
             gameState : GameRunning.current
         })
-        socket.emit("startGame" , (gameState) =>{
-            console.log(gameState)
-        socket.on("room:gameRunning" , (state , players) => {
-            console.log("state from backend is" , state , "players", players)
-            GameRunning.current = state
-        console.log(GameRunning.current)
-        })
-        })
-        navigate(`/lobby/${roomId}`)
     }
 
     const handleKeyPress = (e) => {

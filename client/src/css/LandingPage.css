@@ -1,28 +1,30 @@
 /* LandingPage.css */
 
 @import "tailwindcss";
+
+.landing-page-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 25%, #312e81 50%, #1e1b4b 75%, #0f172a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
 .landing-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 40px 20px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: white;
-  padding: 20px;
   text-align: center;
-  background: rgba(123, 104, 238, 0.25); /* Semi-transparent purple shade */
-  border-radius: 15px;
-  box-shadow: 0 4px 30px rgba(123, 104, 238, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(123, 104, 238, 0.3);
-
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, 10px);
-  text-align: center;
+  max-width: 1000px;
+  width: 100%;
 }
 
 /* Header Styles */
@@ -96,6 +98,9 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: manipulation;
 }
 
 .buttons button:first-child {
@@ -110,6 +115,11 @@
   box-shadow: 0 12px 40px rgba(139, 92, 246, 0.4);
 }
 
+.buttons button:first-child:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
 .buttons button:last-child {
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
   color: white;
@@ -120,6 +130,11 @@
   background: linear-gradient(135deg, #5855eb, #7c3aed);
   transform: translateY(-3px);
   box-shadow: 0 12px 40px rgba(99, 102, 241, 0.4);
+}
+
+.buttons button:last-child:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
 }
 
 .buttons button::before {
