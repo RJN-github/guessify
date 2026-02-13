@@ -4,6 +4,7 @@ import ChatInput from "../Chat/ChatInput.jsx";
 import socket from "../../socket/socket.js";
 import { useNavigate } from "react-router-dom";
 import '../../css/Utilities.css'
+import '../../css/Game.css'
 import useStore from '../../Store/Store.js';
 
 function Game() {
@@ -183,57 +184,57 @@ function Game() {
         const winner = top3[0];
 
         return (
-            <div style={{ padding: '20px', background: '#0f0b16', color: '#fff', minHeight: '100vh', boxSizing: 'border-box' }}>
-                <div style={{ maxWidth: 1100, margin: '0 auto', padding: 20 }}>
-                    <h1 style={{ textAlign: 'center', margin: 0, fontSize: 36 }}>🎉 Game Over</h1>
+            <div className="game-over-container">
+                <div className="game-over-wrapper">
+                    <h1 className="game-over-title">🎉 Game Over</h1>
                     {winner && (
-                        <h2 style={{ textAlign: 'center', marginTop: 8, color: '#e6d0ff' }}>
+                        <h2 className="game-over-winner">
                             {winner.username} won with {winner.score} points
                         </h2>
                     )}
 
                     {/* Podium */}
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: 20, alignItems: 'flex-end', marginTop: 30, flexWrap: 'wrap' }}>
+                    <div className="podium">
                         {/* second place */}
-                        <div style={{ width: 200, textAlign: 'center' }}>
+                        <div className="podium-place">
                             {top3[1] ? (
                                 <div>
-                                    <div style={{ background: '#6b4b9c', padding: 16, borderRadius: 8, color: '#fff' }}>
-                                        <div style={{ fontSize: 18 }}>{top3[1].username}</div>
-                                        <div style={{ fontSize: 14, color: '#ffd7fb' }}>{top3[1].score} pts</div>
+                                    <div className="podium-card second">
+                                        <div className="username">{top3[1].username}</div>
+                                        <div className="score">{top3[1].score} pts</div>
                                     </div>
-                                    <div style={{ height: 80, background: '#2a2130', marginTop: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 6 }}>
-                                        <strong style={{ color: '#cfc7ff' }}>2</strong>
+                                    <div className="podium-stand second">
+                                        <strong>2</strong>
                                     </div>
                                 </div>
                             ) : null}
                         </div>
 
                         {/* first place - taller */}
-                        <div style={{ width: 220, textAlign: 'center' }}>
+                        <div className="podium-place">
                             {top3[0] ? (
                                 <div>
-                                    <div style={{ background: '#9b6bff', padding: 18, borderRadius: 10, color: '#fff' }}>
-                                        <div style={{ fontSize: 20 }}>{top3[0].username}</div>
-                                        <div style={{ fontSize: 16, color: '#fff3' }}>{top3[0].score} pts</div>
+                                    <div className="podium-card first">
+                                        <div className="username">{top3[0].username}</div>
+                                        <div className="score">{top3[0].score} pts</div>
                                     </div>
-                                    <div style={{ height: 110, background: '#27162b', marginTop: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 8 }}>
-                                        <strong style={{ fontSize: 22, color: '#fff' }}>1</strong>
+                                    <div className="podium-stand first">
+                                        <strong>1</strong>
                                     </div>
                                 </div>
                             ) : null}
                         </div>
 
                         {/* third place */}
-                        <div style={{ width: 200, textAlign: 'center' }}>
+                        <div className="podium-place">
                             {top3[2] ? (
                                 <div>
-                                    <div style={{ background: '#6b4b9c', padding: 16, borderRadius: 8, color: '#fff' }}>
-                                        <div style={{ fontSize: 18 }}>{top3[2].username}</div>
-                                        <div style={{ fontSize: 14, color: '#ffd7fb' }}>{top3[2].score} pts</div>
+                                    <div className="podium-card third">
+                                        <div className="username">{top3[2].username}</div>
+                                        <div className="score">{top3[2].score} pts</div>
                                     </div>
-                                    <div style={{ height: 60, background: '#2a2130', marginTop: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 6 }}>
-                                        <strong style={{ color: '#cfc7ff' }}>3</strong>
+                                    <div className="podium-stand third">
+                                        <strong>3</strong>
                                     </div>
                                 </div>
                             ) : null}
@@ -242,21 +243,21 @@ function Game() {
 
                     {/* Rest list */}
                     {rest && rest.length > 0 && (
-                        <div style={{ marginTop: 40, background: '#120812', padding: 16, borderRadius: 8 }}>
-                            <h3 style={{ margin: '0 0 10px 0', color: '#e6d0ff' }}>Other Players</h3>
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12 }}>
+                        <div className="others-section">
+                            <h3>Other Players</h3>
+                            <div className="others-grid">
                                 {rest.map((p) => (
-                                    <div key={p.id} style={{ padding: 12, background: '#1b1220', borderRadius: 6, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                        <div style={{ color: '#fff' }}>{p.username}</div>
-                                        <div style={{ color: '#d6b6ff', fontWeight: 'bold' }}>{p.score} pts</div>
+                                    <div key={p.id} className="other-player">
+                                        <div className="name">{p.username}</div>
+                                        <div className="score">{p.score} pts</div>
                                     </div>
                                 ))}
                             </div>
                         </div>
                     )}
 
-                    <div style={{ textAlign: 'center', marginTop: 30 }}>
-                        <button onClick={handleExitGame} style={{ padding: '10px 20px', fontSize: '16px', background: '#7b3fff', color: '#fff', border: 'none', borderRadius: 6 }}>Back to Lobby</button>
+                    <div className="game-over-btn">
+                        <button onClick={handleExitGame}>Back to Lobby</button>
                     </div>
                 </div>
             </div>
@@ -267,29 +268,11 @@ function Game() {
     const showTransition = transitionMessage.length > 0;
 
     return (
-        <div style={{ display: 'flex', height: '100vh', background: '#0a0a0a', color: '#fff', position: 'relative' }}>
+        <div className="game-container">
             {/* Transition Overlay */}
             {showTransition && (
-                <div style={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background: 'rgba(0, 0, 0, 0.8)',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    zIndex: 1000,
-                    animation: 'fadeInOut 2s ease-in-out'
-                }}>
-                    <div style={{
-                        fontSize: '32px',
-                        fontWeight: 'bold',
-                        color: '#4eff44',
-                        textAlign: 'center',
-                        textShadow: '0 0 20px #4eff44'
-                    }}>
+                <div className="transition-overlay">
+                    <div className="transition-message">
                         {transitionMessage}
                     </div>
                 </div>
@@ -306,31 +289,31 @@ function Game() {
 
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                 {/* Header */}
-                <div style={{ padding: '15px', background: '#1a1a1a', borderBottom: '2px solid #444' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <div>
-                            <span style={{ fontSize: '18px', marginRight: '20px' }}>
-                                <strong>Round:</strong> {currentRound}/3
-                            </span>
-                            <span style={{ fontSize: '18px', color: timerStarted ? (timeRemaining <= 10 ? '#ff4444' : '#4eff44') : '#999' }}>
-                                <strong>⏱️ Time:</strong> {timerStarted ? timeRemaining : '⏳ waiting for word'}
-                            </span>
+                <div className="game-header">
+                    <div className="game-header-info">
+                        <div className="header-item">
+                            <strong>Round:</strong> {currentRound}/3
                         </div>
-                        <div style={{ fontSize: '18px', textAlign: 'center', flex: 1 }}>
-                            {wordLength && (
-                                <div style={{ color: '#4eff44', fontWeight: 'bold', fontSize: '20px' }}>
-                                    {isDrawer ? (
-                                        <span>{selectedWord} <span style={{ fontSize: '14px', color: '#ffaa00' }}>({wordLength} letters)</span></span>
-                                    ) : (
-                                        <span>
-                                            {Array(wordLength).fill('_').join(' ')}
-                                            <span style={{ fontSize: '14px', color: '#ffaa00', marginLeft: '10px' }}>({wordLength} letters)</span>
-                                        </span>
-                                    )}
-                                </div>
-                            )}
+                        <div className={`header-item ${timerStarted ? (timeRemaining <= 10 ? 'low-time' : 'normal-time') : ''}`} style={{color: timerStarted ? (timeRemaining <= 10 ? '#ff4444' : '#4eff44') : '#999'}}>
+                            <strong>⏱️ Time:</strong> {timerStarted ? timeRemaining : '⏳ waiting for word'}
                         </div>
-                        <div style={{ fontSize: '18px' }}>
+                    </div>
+                    <div className="game-header-center">
+                        {wordLength && (
+                            <div className="word-display">
+                                {isDrawer ? (
+                                    <span>{selectedWord} <span className="word-display-hint">({wordLength} letters)</span></span>
+                                ) : (
+                                    <span>
+                                        {Array(wordLength).fill('_').join(' ')}
+                                        <span className="word-display-hint">({wordLength} letters)</span>
+                                    </span>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                    <div className="game-header-drawer">
+                        <div className="header-item">
                             <strong>Drawer:</strong> {currentDrawer ? currentDrawer.username : 'Loading...'} 
                             {isDrawer && <span style={{ color: '#ffaa00' }}> (YOU)</span>}
                         </div>
@@ -339,25 +322,14 @@ function Game() {
 
                 {/* Word Selection (only for drawer) */}
                 {isDrawer && !timerStarted && wordOptions.length > 0 && !selectedWord && (
-                    <div style={{ padding: '15px', background: '#1a1a1a', borderBottom: '2px solid #444', textAlign: 'center' }}>
+                    <div className="word-selection">
                         <h3>Choose a word to draw:</h3>
-                        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <div className="word-options">
                             {wordOptions.map((word, idx) => (
                                 <button
                                     key={idx}
+                                    className="word-btn"
                                     onClick={() => handleSelectWord(word)}
-                                    style={{
-                                        padding: '10px 20px',
-                                        fontSize: '16px',
-                                        background: '#2a7f62',
-                                        color: '#fff',
-                                        border: 'none',
-                                        borderRadius: '5px',
-                                        cursor: 'pointer',
-                                        transition: 'background 0.3s'
-                                    }}
-                                    onMouseOver={(e) => e.target.style.background = '#40a77d'}
-                                    onMouseOut={(e) => e.target.style.background = '#2a7f62'}
                                 >
                                     {word}
                                 </button>
@@ -367,18 +339,18 @@ function Game() {
                 )}
 
                 {/* Canvas and Chat */}
-                <div style={{ display: 'flex', flex: 1 }}>
-                    <div style={{ flex: 1, display: 'flex' }}>
+                <div className="game-content">
+                    <div className="canvas-container">
                         <CanvasBoard isDrawer={isDrawer} />
-                        <div style={{ width: '300px' }}>
-                            <ChatInput isDrawer={isDrawer} guessedPlayers={guessedPlayers} roundActive={roundActive} />
-                        </div>
+                    </div>
+                    <div className="chat-container">
+                        <ChatInput isDrawer={isDrawer} guessedPlayers={guessedPlayers} roundActive={roundActive} />
                     </div>
 
                     {/* Leaderboard */}
-                    <div style={{ width: '250px', background: '#1a1a1a', borderLeft: '2px solid #444', padding: '15px', overflowY: 'auto', maxHeight: '100%' }}>
-                        <h3 style={{ textAlign: 'center', marginTop: 0 }}>📊 Scores</h3>
-                        <div style={{ fontSize: '10px', color: '#666', marginBottom: '10px', textAlign: 'center' }}>
+                    <div className="leaderboard">
+                        <h3>📊 Scores</h3>
+                        <div className="leaderboard-info">
                             Players: {players.length}
                         </div>
                         <div>
@@ -386,23 +358,17 @@ function Game() {
                                 players.map((player, idx) => (
                                     <div 
                                         key={idx} 
-                                        style={{
-                                            padding: '10px',
-                                            background: player.id === socket.id ? '#2a2a2a' : '#0a0a0a',
-                                            margin: '5px 0',
-                                            borderLeft: player.id === socket.id ? '4px solid #ffaa00' : 'none',
-                                            borderRadius: '3px'
-                                        }}
+                                        className={`player-item ${player.id === socket.id ? 'current' : ''}`}
                                     >
-                                        <div style={{ fontSize: '14px' }}>
+                                        <div className="player-name">
                                             <strong>{player.username}</strong>
                                             {currentDrawer && player.id === currentDrawer.id && <span style={{ color: '#4eff44' }}> 🎨</span>}
                                         </div>
-                                        <div style={{ fontSize: '18px', color: '#ffaa00', fontWeight: 'bold' }}>
+                                        <div className="player-score">
                                             {scores && scores[player.id] !== undefined ? scores[player.id] : 0} pts
                                         </div>
                                         {guessedPlayers.has(player.username) && (
-                                            <div style={{ fontSize: '12px', color: '#4eff44' }}>✓ Guessed</div>
+                                            <div className="player-guessed">✓ Guessed</div>
                                         )}
                                     </div>
                                 ))
@@ -417,19 +383,8 @@ function Game() {
             </div>
 
             <button 
+                className="exit-btn"
                 onClick={handleExitGame}
-                style={{
-                    position: 'fixed',
-                    bottom: '20px',
-                    right: '20px',
-                    padding: '10px 20px',
-                    background: '#ff4444',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                    fontSize: '14px'
-                }}
             >
                 Exit Game
             </button>
